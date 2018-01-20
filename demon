@@ -1,0 +1,2 @@
+#!
+nf run nodemon app.js
