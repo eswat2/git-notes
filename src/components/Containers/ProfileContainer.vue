@@ -5,6 +5,7 @@
     <x-profile :bio="bio"
                :repos="repos"
                :notes="notes"
+               :user="user"
                v-if="hasBio"></x-profile>
   </transition>
 </div>
@@ -20,7 +21,8 @@ export default {
     return {
       bio: {},
       repos: [],
-      notes: []
+      notes: [],
+      user: ''
     }
   },
   components: {
@@ -49,11 +51,17 @@ export default {
         this.notes = data
       },
       deep: true
+    },
+    'store.username': {
+      handler( data ) {
+        this.user = data
+      },
+      deep: true
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

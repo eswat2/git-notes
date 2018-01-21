@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-default my-nav">
   <div class="col-sm-7 col-sm-offset-2 my-wrap">
-    <x-search-github></x-search-github>
+    <x-search-github :username="user"></x-search-github>
   </div>
 </nav>
 </template>
@@ -10,8 +10,23 @@
 import xSearchGithub from '../SearchGithub.vue'
 
 export default {
+  props: [ 'store' ],
   components: {
     xSearchGithub
+  },
+  data() {
+    return {
+      user: ''
+    }
+  },
+  watch: {
+    'store.username': {
+      handler( name ) {
+        console.log( '-- user: ', name, name.length )
+        this.user = name
+      },
+      deep: true
+    }
   }
 }
 </script>

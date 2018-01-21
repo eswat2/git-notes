@@ -4,18 +4,20 @@
                     leave-active-class="animated fadeOut">
     <span class="label label-primary my-key"
           :key="indx"
-          @click.prevent="keyClick"
+          @click.prevent="keyClick(tag)"
           v-for="(tag, indx) in keys">{{tag}}</span>
   </transition-group>
 </div>
 </template>
 
 <script>
+import eventBus from '../utils/eventBus'
+
 export default {
   props: [ 'keys' ],
   methods: {
-    keyClick() {
-      // onClick={()=> actions.updateUser(tag)}
+    keyClick( tag ) {
+      eventBus.$emit( 'search-for', tag )
     }
   }
 }

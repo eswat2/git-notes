@@ -7,7 +7,8 @@
         <input type="text"
                class="form-control"
                placeholder="Username..."
-               v-model.lazy="user">
+               ref="input"
+               v-model.lazy.trim="user">
         <span class="input-group-btn">
           <button
             class="btn btn-primary"
@@ -23,9 +24,10 @@
 </template>
 
 <script>
-import appStore from '../utils/store'
+import eventBus from '../utils/eventBus'
 
 export default {
+  props: [ 'username' ],
   data() {
     return {
       user: ''
@@ -33,7 +35,16 @@ export default {
   },
   methods: {
     doSubmit() {
-      appStore.username = this.user
+      console.log( '-- doSubmit: ', this.user )
+      eventBus.$emit( 'search-for', this.user )
+    }
+  },
+  watch: {
+    username( name ) {
+      console.log( '-- watch: ', name, name.length )
+      // NOTE:  we do this to force the update in the input field...
+      this.$refs.input.value = name
+      this.user = name
     }
   }
 }

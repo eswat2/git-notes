@@ -9,7 +9,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .my-success {
   text-align: left
 }

@@ -9,7 +9,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .my-danger {
   text-align: left
 }

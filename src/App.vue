@@ -1,7 +1,7 @@
 <template>
 <div class="app">
   <div className="main-container">
-    <x-search-container></x-search-container>
+    <x-search-container :store="store"></x-search-container>
     <x-progress-container></x-progress-container>
     <x-keys-container :store="store"></x-keys-container>
     <x-error-container :store="store"></x-error-container>
@@ -13,6 +13,7 @@
 
 <script>
 import appStore from './utils/store'
+import eventBus from './utils/eventBus'
 import xErrorContainer from './components/Containers/ErrorContainer.vue'
 import xKeysContainer from './components/Containers/KeysContainer.vue'
 import xNavigatorContainer from './components/Containers/NavigatorContainer.vue'
@@ -31,11 +32,25 @@ export default {
   },
   data() {
     return {
+      eventBus: null,
       store: null
+    }
+  },
+  methods: {
+    addNewNote( data ) {
+      console.log( '-- addNewNote: ', data )
+    },
+    searchFor( user ) {
+      console.log( '-- searchFor: ', user )
+      this.store.username = user
     }
   },
   created() {
     this.store = appStore
+    this.eventBus = eventBus
+
+    this.eventBus.$on( 'search-for', this.searchFor )
+    this.eventBus.$on( 'add-new-note', this.addNewNote )
   }
 }
 </script>

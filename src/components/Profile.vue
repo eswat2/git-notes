@@ -1,5 +1,5 @@
 <template>
-<div class="row">
+<div class="row app-profile">
   <div class="col-md-4">
     <x-user-profile :bio="bio"></x-user-profile>
   </div>
@@ -7,7 +7,8 @@
     <x-repos :repos="repos"></x-repos>
   </div>
   <div class="col-md-4">
-    <x-notes :notes="notes"></x-notes>
+    <x-notes :notes="notes"
+             :user="user"></x-notes>
   </div>
 </div>
 </template>
@@ -18,7 +19,7 @@ import xRepos from './Github/Repos.vue'
 import xNotes from './Notes/Notes.vue'
 
 export default {
-  props: [ 'bio', 'repos', 'notes' ],
+  props: [ 'bio', 'repos', 'notes', 'user' ],
   components: {
     xUserProfile,
     xRepos,
@@ -27,6 +28,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.app-profile {
+  text-align: left;
+}
 </style>

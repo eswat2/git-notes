@@ -2,12 +2,14 @@
 <div class="my-tags">
   <span class="label label-info my-tag"
         key="indx"
-        @click.prevent="clickTag"
+        @click.prevent="clickTag(tag)"
         v-for="(tag, indx) in tags">{{ tag }}</span>
 </div>
 </template>
 
 <script>
+import eventBus from '../utils/eventBus'
+
 export default {
   data() {
     return {
@@ -15,14 +17,15 @@ export default {
     }
   },
   methods: {
-    clickTag() {
+    clickTag( tag ) {
       // onClick={() => actions.updateUser(tag)}
+      eventBus.$emit( 'search-for', tag )
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
 .my-tags {
   text-align: left;
 }
