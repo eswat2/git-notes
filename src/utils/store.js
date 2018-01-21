@@ -1,26 +1,32 @@
 import Vue from 'vue'
 import helpers from './helpers'
+import eventBus from './eventBus'
 
 const appStore = new Vue({
   data: {
-    error: false,
-    username: null,
     bio: {},
     repos: [],
     notes: [],
+    keys: [],
     tags: [],
+    error: false,
     kounter: 100,
     ktype: 'warning',
-    keys: [],
+    username: null,
     popState: null
   },
-  watch: {
-    username: function(name) {
+  methods: {
+    addNewNote( data ) {
+      console.log( '-- addNewNote: ', data )
+    },
+    searchFor( name ) {
+      // NOTE:  we are now going to process the search-for request...
       const vm = this
-      const user = name ? name.trim() : null
+      const user = name ? name.trim() : ''
       const kount = user ? user.length : 0
-      console.log('-- user: ', user, kount)
-      if (user !== null && user !== '') {
+      console.log('-- searchFor: ', user, kount)
+      this.username = user
+      if (user !== '') {
         vm.repos = [],
         vm.bio = {}
         vm.notes = []
@@ -36,6 +42,10 @@ const appStore = new Vue({
         })
       }
     }
+  },
+  created() {
+    eventBus.$on( 'search-for', this.searchFor )
+    eventBus.$on( 'add-new-note', this.addNewNote )
   }
 })
 

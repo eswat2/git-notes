@@ -13,7 +13,6 @@
 
 <script>
 import xProfile from '../Profile.vue'
-import appStore from '../../utils/store'
 
 export default {
   props: [ 'store' ],

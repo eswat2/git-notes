@@ -8,11 +8,11 @@
                class="form-control"
                placeholder="Username..."
                ref="input"
-               v-model.lazy.trim="user">
+               v-model.trim="user">
         <span class="input-group-btn">
           <button
             class="btn btn-primary"
-            type="submit"
+            :disabled="user === ''"
             @click.prevent="doSubmit">
             Search Github <i class="fa fa-github fa-lg my-github"></i>
           </button>
@@ -35,8 +35,10 @@ export default {
   },
   methods: {
     doSubmit() {
-      console.log( '-- doSubmit: ', this.user )
-      eventBus.$emit( 'search-for', this.user )
+      if ( this.user !== '' ) {
+        console.log( '-- doSubmit: ', this.user )
+        eventBus.$emit( 'search-for', this.user )
+      }
     }
   },
   watch: {

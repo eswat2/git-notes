@@ -11,7 +11,6 @@
     <span class="input-group-btn">
         <button
           class="btn btn-warning"
-          type="submit"
           :disabled="note === ''"
           @click.prevent="doSubmit">
           Add <i class="fa fa-sticky-note app-sticky"></i>
