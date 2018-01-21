@@ -1,6 +1,12 @@
 <template>
-<div className="container">
-  <x-profile v-if="hasBio"></x-profile>
+<div class="container">
+  <transition enter-active-class="animated fadeIn"
+              leave-active-class="animated fadeOutDownBig">
+    <x-profile :bio="bio"
+               :repos="repos"
+               :notes="notes"
+               v-if="hasBio"></x-profile>
+  </transition>
 </div>
 </template>
 
@@ -9,10 +15,12 @@ import xProfile from '../Profile.vue'
 import appStore from '../../utils/store'
 
 export default {
+  props: [ 'store' ],
   data() {
     return {
       bio: {},
-      store: null
+      repos: [],
+      notes: []
     }
   },
   components: {
@@ -29,10 +37,19 @@ export default {
         this.bio = data
       },
       deep: true
+    },
+    'store.repos': {
+      handler( data ) {
+        this.repos = data
+      },
+      deep: true
+    },
+    'store.notes': {
+      handler( data ) {
+        this.notes = data
+      },
+      deep: true
     }
-  },
-  created() {
-    this.store = appStore
   }
 }
 </script>

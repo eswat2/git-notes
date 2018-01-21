@@ -13,33 +13,41 @@ function getUserNotes(username) {
 }
 
 function getKeys() {
-  return axios.get(`https://fire-notes.herokuapp.com/keys`)
+  return axios.get('https://fire-notes.herokuapp.com/keys')
 }
 
 function getGithubInfo(username) {
   return axios.all([
     getRepos(username),
-    getUserInfo(username),
-    getUserNotes(username),
-    getKeys()
+    getUserInfo(username)
   ]).then((arr) => ({
       repos: arr[0].data,
       bio: arr[1].data,
-      notes: arr[2].data,
-      keys: arr[3].data,
       error: false
     })).catch((err) => ({
       repos: [],
       bio: {},
-      notes: [],
-      keys: [],
       error: true,
       fault: err
     }))
 }
 
+function getGithubNotes(username) {
+  return axios.all([
+    getKeys(),
+    getUserNotes(username)
+  ]).then((arr) => ({
+      keys: arr[0].data,
+      notes: arr[1].data
+    })).catch((err) => ({
+      keys: [],
+      notes: []
+    }))
+}
+
 const helpers = {
   getGithubInfo,
+  getGithubNotes,
   getUserNotes,
   getUserInfo,
   getRepos

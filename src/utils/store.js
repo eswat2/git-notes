@@ -15,15 +15,24 @@ const appStore = new Vue({
     popState: null
   },
   watch: {
-    username: function(user) {
+    username: function(name) {
       const vm = this
-      if (user !== null | user !== '') {
+      const user = name ? name.trim() : null
+      const kount = user ? user.length : 0
+      console.log('-- user: ', user, kount)
+      if (user !== null && user !== '') {
+        vm.repos = [],
+        vm.bio = {}
+        vm.notes = []
+        vm.error = false
         helpers.getGithubInfo(user).then((data) => {
           vm.repos = data.repos
           vm.bio = data.bio
-          vm.notes = data.notes.values
-          vm.keys = data.keys
           vm.error = data.error
+        })
+        helpers.getGithubNotes(user).then((data) => {
+          vm.keys = data.keys
+          vm.notes = data.notes.values
         })
       }
     }

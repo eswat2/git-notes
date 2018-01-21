@@ -1,19 +1,18 @@
 <template>
 <div>
-  <span class="label label-primary my-key"
-        key="indx"
-        @click.prevent="keyClick"
-        v-for="(tag, indx) in keys">{{tag}}</span>
+  <transition-group enter-active-class="animated fadeIn"
+                    leave-active-class="animated fadeOut">
+    <span class="label label-primary my-key"
+          :key="indx"
+          @click.prevent="keyClick"
+          v-for="(tag, indx) in keys">{{tag}}</span>
+  </transition-group>
 </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      keys: [ 'eswat2' ]
-    }
-  },
+  props: [ 'keys' ],
   methods: {
     keyClick() {
       // onClick={()=> actions.updateUser(tag)}

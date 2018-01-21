@@ -3,15 +3,16 @@
   <div className="main-container">
     <x-search-container></x-search-container>
     <x-progress-container></x-progress-container>
-    <x-keys-container></x-keys-container>
-    <x-error-container></x-error-container>
+    <x-keys-container :store="store"></x-keys-container>
+    <x-error-container :store="store"></x-error-container>
     <x-navigator-container></x-navigator-container>
-    <x-profile-container></x-profile-container>
+    <x-profile-container :store="store"></x-profile-container>
   </div>
 </div>
 </template>
 
 <script>
+import appStore from './utils/store'
 import xErrorContainer from './components/Containers/ErrorContainer.vue'
 import xKeysContainer from './components/Containers/KeysContainer.vue'
 import xNavigatorContainer from './components/Containers/NavigatorContainer.vue'
@@ -30,8 +31,11 @@ export default {
   },
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      store: null
     }
+  },
+  created() {
+    this.store = appStore
   }
 }
 </script>
