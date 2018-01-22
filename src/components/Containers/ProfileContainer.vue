@@ -7,6 +7,7 @@
                :repos="repos"
                :notes="notes"
                :user="user"
+               :key="keyFor"
                v-if="hasBio"></x-profile>
   </transition>
 </div>
@@ -22,7 +23,8 @@ export default {
       bio: {},
       repos: [],
       notes: [],
-      user: ''
+      user: '',
+      kount: 0
     }
   },
   components: {
@@ -31,11 +33,15 @@ export default {
   computed: {
     hasBio() {
       return Object.keys( this.bio ).length > 0
+    },
+    keyFor() {
+      return this.user + this.kount
     }
   },
   watch: {
     'store.bio': {
       handler( data ) {
+        this.kount += 1
         this.bio = data
       },
       deep: true
@@ -52,7 +58,7 @@ export default {
       },
       deep: true
     },
-    'store.bio.name': {
+    'store.username': {
       handler( data ) {
         this.user = data
       },

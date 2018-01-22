@@ -14,9 +14,9 @@ const updateUser = (username) => {
   store.username = user
 }
 
-const addNote = (newNote) => {
+const addNote = (data) => {
   // update firebase with the new notes
-  fireNotes.update(store.username, newNote)
+  fireNotes.update(data.user, data.note)
 }
 
 const getWho = (user, parm) => {
@@ -157,6 +157,10 @@ eventBus.$on('search-for', function(user) {
   store.username = user
   _fetchGithub(user)
   _fetchNotes(user)
+})
+
+eventBus.$on('add-new-note', function(data) {
+  addNote(data)
 })
 
 const actions = {
