@@ -17,7 +17,7 @@
             class="btn btn-primary"
             :disabled="user === ''"
             @click.prevent="doSubmit">
-            Search Github <i class="fa fa-github fa-lg my-github"></i>
+            Search Github
           </button>
         </span>
       </div>
@@ -56,10 +56,6 @@ export default {
 </script>
 
 <style scoped>
-.my-github {
-  padding-left: 5px
-}
-
 .my-repo {
   float: right;
   font-size: 40px;
