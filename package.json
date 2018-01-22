@@ -10,10 +10,10 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "axios": "^0.17.1",
-    "express": "^4.16.2",
-    "express-history-api-fallback": "^2.2.1",
-    "express-sslify": "^1.2.0",
+    "axios": "0.17.1",
+    "express": "4.16.2",
+    "express-history-api-fallback": "2.2.1",
+    "express-sslify": "1.2.0",
     "lodash": "4.17.4",
     "vue": "2.5.13"
   },
