@@ -1,10 +1,11 @@
 <template>
 <div class="my-tags">
   <transition-group enter-active-class="animated fadeIn"
-                    leave-active-class="animated fadeOut">
+                    leave-active-class="animated fadeOut"
+                    mode="out-in">
     <span class="label label-info my-tag"
-          key="indx"
-          @click.prevent="clickTag(tag)"
+          :key="indx"
+          @click.prevent="tagClick(tag)"
           v-for="(tag, indx) in tags">{{ tag }}</span>
   </transition-group>
 </div>
@@ -16,7 +17,7 @@ import eventBus from '../utils/eventBus'
 export default {
   props: [ 'tags' ],
   methods: {
-    clickTag( tag ) {
+    tagClick( tag ) {
       eventBus.$emit( 'search-for', tag )
     }
   }

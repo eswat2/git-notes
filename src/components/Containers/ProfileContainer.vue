@@ -1,7 +1,8 @@
 <template>
 <div class="container">
   <transition enter-active-class="animated fadeIn"
-              leave-active-class="animated fadeOutDownBig">
+              leave-active-class="animated fadeOutDownBig"
+              mode="out-in">
     <x-profile :bio="bio"
                :repos="repos"
                :notes="notes"
@@ -51,7 +52,7 @@ export default {
       },
       deep: true
     },
-    'store.username': {
+    'store.bio.name': {
       handler( data ) {
         this.user = data
       },
