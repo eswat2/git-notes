@@ -2,6 +2,9 @@
 <div class="col-sm-12">
   <form>
     <div class="form-group col-sm-12">
+      <a href="https://github.com/eswat2/git-notes">
+        <i class="fa fa-github-square my-repo"></i>
+      </a>
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search" /></div>
         <input type="text"
@@ -55,5 +58,18 @@ export default {
 <style scoped>
 .my-github {
   padding-left: 5px
+}
+
+.my-repo {
+  float: right;
+  font-size: 40px;
+  margin-top: -3px;
+  margin-left: 10px;
+  color: #aaaaaa;
+  cursor: pointer;
+}
+
+.my-repo:hover {
+  color: #555555
 }
 </style>
