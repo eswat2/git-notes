@@ -1,9 +1,12 @@
 <template>
 <div class="my-tags">
-  <span class="label label-info my-tag"
-        key="indx"
-        @click.prevent="clickTag(tag)"
-        v-for="(tag, indx) in tags">{{ tag }}</span>
+  <transition-group enter-active-class="animated fadeIn"
+                    leave-active-class="animated fadeOut">
+    <span class="label label-info my-tag"
+          key="indx"
+          @click.prevent="clickTag(tag)"
+          v-for="(tag, indx) in tags">{{ tag }}</span>
+  </transition-group>
 </div>
 </template>
 
@@ -11,14 +14,9 @@
 import eventBus from '../utils/eventBus'
 
 export default {
-  data() {
-    return {
-      tags: [ 'eswat2' ]
-    }
-  },
+  props: [ 'tags' ],
   methods: {
     clickTag( tag ) {
-      // onClick={() => actions.updateUser(tag)}
       eventBus.$emit( 'search-for', tag )
     }
   }

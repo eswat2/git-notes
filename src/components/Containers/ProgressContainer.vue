@@ -9,17 +9,32 @@
 
 <script>
 export default {
+  props: [ 'store' ],
   data() {
     return {
-      value: 60
+      kounter: 0
     }
   },
   computed: {
     style() {
       return {
-        width: this.value + '%'
+        width: this.kounter + '%'
       }
     }
+  },
+  watch: {
+    "store.kounter": {
+      handler( data ) {
+        this.kounter = data
+      },
+      deep: true
+    }
+  },
+  created() {
+    const vm = this
+    setTimeout( () => {
+      vm.kounter = 100
+    }, 1000 )
   }
 }
 </script>

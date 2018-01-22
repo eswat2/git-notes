@@ -10,7 +10,7 @@ const appStore = new Vue({
     keys: [],
     tags: [],
     error: false,
-    kounter: 100,
+    kounter: 0,
     ktype: 'warning',
     username: null,
     popState: null
@@ -18,6 +18,11 @@ const appStore = new Vue({
   methods: {
     addNewNote( data ) {
       console.log( '-- addNewNote: ', data )
+    },
+    addNewTag( tag ) {
+      if (!this.tags.includes(tag)) {
+        this.tags.push(tag)
+      }
     },
     searchFor( name ) {
       // NOTE:  we are now going to process the search-for request...
@@ -46,6 +51,7 @@ const appStore = new Vue({
   created() {
     eventBus.$on( 'search-for', this.searchFor )
     eventBus.$on( 'add-new-note', this.addNewNote )
+    eventBus.$on( 'add-new-tag', this.addNewTag )
   }
 })
 
