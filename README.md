@@ -12,6 +12,7 @@ I wanted to build a **Vue** version of my [**egghead-notes**](https://github.com
 
 - initialized the project with **vue-cli** (webpack-simple)
 - refined UI elements
+- mobile friendly layout
 - a simple store which conceptually is only mutated via actions
 - a simple eventBus which ties events to actions
 - uses [**axios**](https://github.com/mzabriskie/axios) for all api calls
@@ -39,4 +40,3 @@ Running the app locally is as simple as executing the following:
 ```
 npm run dev
 ```
-

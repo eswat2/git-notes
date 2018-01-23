@@ -23,7 +23,10 @@
   <li class=" list-group-item"
       v-if="chk4num('public_repos')">Public Repos: {{bio.public_repos}}</li>
   <li class=" list-group-item"
-      v-if="chk4('blog')">Blog: <a :href='bio.blog'> {{bio.blog}}</a></li>
+      v-if="chk4('blog')">Blog:
+    <a :href='bio.blog'
+       target="_blank"> {{bio.blog}}</a>
+  </li>
 </div>
 </template>
 
