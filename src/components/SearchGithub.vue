@@ -61,11 +61,11 @@ export default {
   font-size: 40px;
   margin-top: -3px;
   margin-left: 10px;
-  color: #aaaaaa;
+  color: grey;
   cursor: pointer;
 }
 
 .my-repo:hover {
-  color: #555555
+  color: red
 }
 </style>
