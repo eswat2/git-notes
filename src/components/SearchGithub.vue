@@ -2,7 +2,8 @@
 <div class="col-sm-12">
   <form>
     <div class="form-group col-sm-12">
-      <a href="https://github.com/eswat2/git-notes">
+      <a href="https://github.com/eswat2/git-notes"
+         target="_blank">
         <i class="fa fa-github-square my-repo"></i>
       </a>
       <div class="input-group">
