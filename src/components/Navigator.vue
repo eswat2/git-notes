@@ -1,10 +1,9 @@
 <template>
 <div class="my-tags">
   <transition-group enter-active-class="animated fadeIn"
-                    leave-active-class="animated fadeOut"
-                    mode="out-in">
+                    leave-active-class="animated fadeOut">
     <span class="label label-info my-tag"
-          :key="indx"
+          :key="tag"
           @click.prevent="tagClick(tag)"
           v-for="(tag, indx) in tags">{{ tag }}</span>
   </transition-group>

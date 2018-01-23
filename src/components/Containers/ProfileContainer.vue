@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-  <transition enter-active-class="animated fadeIn"
+  <transition enter-active-class="animated fadeInUpBig"
               leave-active-class="animated fadeOutDownBig"
               mode="out-in">
     <x-profile :bio="bio"
@@ -8,7 +8,7 @@
                :notes="notes"
                :user="user"
                :key="keyFor"
-               v-if="hasBio"></x-profile>
+               v-if="load"></x-profile>
   </transition>
 </div>
 </template>
@@ -24,7 +24,8 @@ export default {
       repos: [],
       notes: [],
       user: '',
-      kount: 0
+      kount: 0,
+      load: false
     }
   },
   components: {
@@ -39,6 +40,13 @@ export default {
     }
   },
   watch: {
+    hasBio( flag ) {
+      // NOTE:  add a small dwell so that the hide-show animation works...
+      const vm = this
+      setTimeout( () => {
+        vm.load = flag
+      }, 50 )
+    },
     'store.bio': {
       handler( data ) {
         this.kount += 1

@@ -3,7 +3,7 @@
   <transition-group enter-active-class="animated fadeIn"
                     leave-active-class="animated fadeOut">
     <span class="label label-primary my-key"
-          :key="indx"
+          :key="tag"
           @click.prevent="keyClick(tag)"
           v-for="(tag, indx) in keys">{{tag}}</span>
   </transition-group>

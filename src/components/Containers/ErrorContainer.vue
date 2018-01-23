@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <transition enter-active-class="animated fadeIn"
-              leave-active-class="fadeOut">
+              leave-active-class="animated fadeOut">
     <x-danger salute="Error"
               message="user does not exist..."
               v-if="store.error"></x-danger>
