@@ -22,14 +22,6 @@ export default {
       this.keys = data
     }
   },
-  watch: {
-    'store.keys': {
-      handler( data ) {
-        this.keys = data
-      },
-      deep: true
-    }
-  },
   created() {
     eventBus.$on( 'store.keys', this.updateKeys )
     eventBus.$emit( 'get:keys' )
