@@ -6,16 +6,20 @@
 
 <script>
 import xKeys from '../Keys.vue'
-
+import eventBus from '../../utils/eventBus'
 
 export default {
-  props: [ 'store' ],
   components: {
     xKeys
   },
   data() {
     return {
       keys: [],
+    }
+  },
+  methods: {
+    updateKeys( data ) {
+      this.keys = data
     }
   },
   watch: {
@@ -25,6 +29,10 @@ export default {
       },
       deep: true
     }
+  },
+  created() {
+    eventBus.$on( 'store.keys', this.updateKeys )
+    eventBus.$emit( 'get:keys' )
   }
 }
 </script>

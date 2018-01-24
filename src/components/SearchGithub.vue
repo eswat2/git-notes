@@ -40,14 +40,14 @@ export default {
   methods: {
     doSubmit() {
       if ( this.user !== '' ) {
-        console.log( '-- doSubmit: ', this.user )
+        // console.log( '-- doSubmit: ', this.user )
         eventBus.$emit( 'search-for', this.user )
       }
     }
   },
   watch: {
     username( name ) {
-      console.log( '-- watch: ', name, name.length )
+      // console.log( '-- watch: ', name, name.length )
       // NOTE:  we do this to force the update in the input field...
       this.$refs.input.value = name
       this.user = name

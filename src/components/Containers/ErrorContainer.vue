@@ -4,16 +4,16 @@
               leave-active-class="animated fadeOut">
     <x-danger salute="Error"
               message="user does not exist..."
-              v-if="store.error"></x-danger>
+              v-if="error"></x-danger>
   </transition>
 </div>
 </template>
 
 <script>
 import xDanger from '../Alerts/Danger.vue'
+import eventBus from '../../utils/eventBus'
 
 export default {
-  props: [ 'store' ],
   components: {
     xDanger
   },
@@ -22,13 +22,14 @@ export default {
       error: false
     }
   },
-  watch: {
-    'store.error': {
-      handler( data ) {
-        this.error = data
-      },
-      deep: true
+  methods: {
+    updateError( data ) {
+      this.error = data
     }
+  },
+  created() {
+    eventBus.$on( 'store.error', this.updateError )
+    eventBus.$emit( 'get:error' )
   }
 }
 </script>
