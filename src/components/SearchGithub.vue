@@ -9,7 +9,7 @@
       <div class="input-group">
         <div class="input-group-addon"><i class="fa fa-search" /></div>
         <input type="text"
-               class="form-control"
+               class="form-control lower"
                placeholder="Username..."
                ref="input"
                v-model.trim="user">
@@ -57,6 +57,10 @@ export default {
 </script>
 
 <style scoped>
+.lower {
+  text-transform: lowercase;
+}
+
 .my-repo {
   float: right;
   font-size: 40px;

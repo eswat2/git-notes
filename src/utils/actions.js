@@ -153,10 +153,14 @@ const setPopState = (data) => {
   _popHandler(data)
 }
 
-eventBus.$on('search-for', function(user) {
+const searchFor = (user) => {
   store.username = user
   _fetchGithub(user)
   _fetchNotes(user)
+}
+
+eventBus.$on('search-for', function(user) {
+  searchFor(user)
 })
 
 eventBus.$on('add-new-note', function(data) {
@@ -170,6 +174,7 @@ const actions = {
   newUserInfo,
   offline,
   ping,
+  searchFor,
   setPopState,
   startKlock,
   updateUser
