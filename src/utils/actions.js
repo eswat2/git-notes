@@ -35,7 +35,10 @@ const addNote = (data) => {
 }
 
 const addTag = (data) => {
-
+  if (!store.tags.includes(data)) {
+    const list = [ ...store.tags, data ].sort()
+    _updateStore( 'tags', list )
+  }
 }
 
 const getWho = (user, parm) => {
@@ -145,10 +148,7 @@ const newUserInfo = (username, data) => {
     _saveUser(username)
     _pushState(username)
 
-    if (!store.tags.includes(username)) {
-      const list = [ ...store.tags, username ].sort()
-      _updateStore( 'tags', list )
-    }
+    addTag(username)
   }
 }
 
