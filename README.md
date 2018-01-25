@@ -2,11 +2,15 @@
 [![Dependency Status](https://dependencyci.com/github/eswat2/git-notes/badge)](https://dependencyci.com/github/eswat2/git-notes)
 [![Heroku](https://heroku-badge.herokuapp.com/?app=git-notes&style=flat&svg=1)](https://git-notes.herokuapp.com)
 
-I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) notes server, [**fire-notes.herokuapp.com**](https://fire-notes.herokuapp.com), to handle reading & writing notes.  The repo for that can be found here: [**fire-notes**](https://github.com/eswat2/fire-notes)
+I wanted to build a **Vue** version of my [**egghead-notes**](https://github.com/eswat2/egghead-notes) app and this is the result.
 
 ### Background:
 
-I wanted to build a **Vue** version of my [**egghead-notes**](https://github.com/eswat2/egghead-notes) app and this is the result.
+I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) notes server, [**fire-notes.herokuapp.com**](https://fire-notes.herokuapp.com), to handle reading & writing notes.  The repo for that can be found here: [**fire-notes**](https://github.com/eswat2/fire-notes)
+
+### Elements:
+
+[![](images/git-notes_herokuapp-50p.png?raw=true)]()
 
 ### Features:
 
