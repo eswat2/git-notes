@@ -10,7 +10,7 @@ I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/We
 
 ### Elements:
 
-[![](images/git-notes_herokuapp-50x.png?raw=true)]()
+[![](images/git-notes_herokuapp-50x.png?raw=true)](https://raw.githubusercontent.com/eswat2/git-notes/master/images/git-notes_herokuapp-50x.png)
 
 ### Features:
 
