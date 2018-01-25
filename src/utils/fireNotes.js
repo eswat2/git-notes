@@ -73,4 +73,8 @@ keys.forEach((key) => {
   eventBus.$on( 'fire-notes:' + key, fireNotes[key] )
 })
 
-export default keys.map((key) => { return 'fire-notes:' + key })
+const events = {
+  api: keys.map((key) => { return 'fire-notes:' + key })
+}
+
+export default events

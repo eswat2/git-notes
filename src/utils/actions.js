@@ -205,4 +205,10 @@ tags.forEach((tag) => {
   })
 })
 
-export default keys.map((key) => { return key })
+const events = {
+  api: keys.map((key) => { return key }),
+  data: tags.map((tag) => { return 'store.' + tag }),
+  get: tags.map((tag) => { return 'get:' + tag })
+}
+
+export default events
