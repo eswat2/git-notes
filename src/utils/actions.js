@@ -1,22 +1,41 @@
 import eventBus from './eventBus'
-import fireNotes from './fireNotes'
 import helpers from './helpers'
-import store from './store'
+
+const store = {
+  bio: {},
+  repos: [],
+  notes: [],
+  keys: [],
+  tags: [],
+  error: false,
+  ktype: 'warning',
+  username: '',
+  popState: null
+}
 
 const USER_KEY   = 'AppStore.username'
 const truncPath = (str, pattern) => {
   return (str.indexOf(pattern) !== -1) ? str.slice(str.indexOf(pattern) + pattern.length) : null
 }
 
+const _updateStore = (key, value) => {
+  store[key] = value
+  const name = 'store.' + key
+  eventBus.$emit(name, value)
+}
+
 const updateUser = (username) => {
   const user = username.toLowerCase()
-  console.log(`-- updateUser:  ${user}`)
-  store.username = user
+  _updateStore( 'username', user )
 }
 
 const addNote = (data) => {
   // update firebase with the new notes
-  fireNotes.update(data.user, data.note)
+  eventBus.$emit( 'fire-notes:update', data.user, data.note )
+}
+
+const addTag = (data) => {
+
 }
 
 const getWho = (user, parm) => {
@@ -31,10 +50,10 @@ const initStore = () => {
   console.log(`-- initStore:  ${who}`)
   // console.log(location);
   // console.log(parm);
-  store.username = (who ? who.toLowerCase() : null)
+  _updateStore( 'username', (who ? who.toLowerCase() : null))
 
-  store.kounter = 0
-  store.ktype   = 'info'
+  eventBus.kounter = 0
+  _updateStore( 'ktype', 'info' )
 
   if (store.username !== null) {
     _fetchGithub(store.username)
@@ -45,12 +64,15 @@ const initStore = () => {
 let ticker = 0
 let ticks  = 0
 let klock  = null
-
-const ping = () => {
-  const kount = store.kounter
+//
+// NOTE:  export ping to minimize the events thrown...
+//
+//
+export const ping = () => {
+  const kount = eventBus.kounter
   if (ticker === 5) {
     ticker = 0
-    store.kounter = (kount === 100) ? 0 : kount + 1
+    eventBus.kounter = (kount === 100) ? 0 : kount + 1
   } else {
     ticker++
   }
@@ -58,17 +80,17 @@ const ping = () => {
 }
 
 const offline = () => {
-  store.kounter = 100
-  store.ktype   = 'danger'
+  eventBus.kounter = 100
+  _updateStore( 'ktype', 'danger' )
 }
 
 const newData = (data) => {
   if (data.type === 'KEYS') {
-    store.keys = data.keys
+    _updateStore( 'keys', data.keys )
   }
   if (data.type === 'DATA') {
     if (data.id === store.username) {
-      store.notes = data.values
+      _updateStore( 'notes', data.values )
     }
   }
 }
@@ -92,7 +114,6 @@ const startKlock = () => {
 }
 
 const _saveUser = (username) => {
-  // NOTE:  this is not an action since it doesn't manipulate the store...
   if (username !== null) {
     console.log(`-- saveUser:  ${username}`)
     localStorage.setItem(USER_KEY, username)
@@ -109,16 +130,16 @@ const _pushState = (username) => {
 
 const _fetchNotes = (username) => {
   console.log(`-- fetchNotes:  ${username}`)
-  store.notes = []
+  _updateStore( 'notes', [] )
   if (username) {
-    fireNotes.get(username)
+    eventBus.$emit('fire-notes:get', username)
   }
 }
 
 const newUserInfo = (username, data) => {
-  store.bio   = data.bio
-  store.repos = data.repos
-  store.error = data.error
+  _updateStore( 'bio', data.bio )
+  _updateStore( 'repos', data.repos )
+  _updateStore( 'error', data.error )
 
   if (!store.error) {
     _saveUser(username)
@@ -126,15 +147,15 @@ const newUserInfo = (username, data) => {
 
     if (!store.tags.includes(username)) {
       const list = [ ...store.tags, username ].sort()
-      store.tags = list
+      _updateStore( 'tags', list )
     }
   }
 }
 
 const _fetchGithub = (username) => {
   console.log(`-- fetchGithub:  ${username}`)
-  store.bio   = {}
-  store.repos = []
+  _updateStore( 'bio', {} )
+  _updateStore( 'repos', [] )
   if (username) {
     helpers.getGithubInfo(username).then((data) => { newUserInfo(username, data) })
   } else {
@@ -149,35 +170,45 @@ const _popHandler = (pop) => {
 }
 
 const setPopState = (data) => {
-  store.popState = data
+  _updateStore('popState', data )
   _popHandler(data)
 }
 
 const searchFor = (user) => {
-  store.username = user
-  _fetchGithub(user)
-  _fetchNotes(user)
+  _updateStore( 'username', user )
+  _fetchGithub( user )
+  _fetchNotes( user )
 }
-
-eventBus.$on('search-for', function(user) {
-  searchFor(user)
-})
-
-eventBus.$on('add-new-note', function(data) {
-  addNote(data)
-})
 
 const actions = {
-  addNote,
-  initStore,
-  newData,
-  newUserInfo,
-  offline,
-  ping,
-  searchFor,
-  setPopState,
-  startKlock,
-  updateUser
+  'init-store': initStore,
+  'start-klock': startKlock,
+  'offline': offline,
+  'search-for': searchFor,
+  'add-new-note': addNote,
+  'add-new-tag': addTag,
+  'new-data': newData,
+  'set-pop-state': setPopState
 }
 
-export default actions
+const keys = Object.keys( actions )
+// NOTE:  we define listeners for all of the exposed apis...
+keys.forEach((key) => {
+  eventBus.$on( key, actions[key] )
+})
+
+const tags = Object.keys( store )
+// NOTE:  we setup get listeners for all the tags in the store...
+tags.forEach((tag) => {
+  eventBus.$on( 'get:' + tag, function() {
+    eventBus.$emit('store.' + tag, store[tag])
+  })
+})
+
+const events = {
+  api: keys.map((key) => { return key }),
+  data: tags.map((tag) => { return 'store.' + tag }),
+  get: tags.map((tag) => { return 'get:' + tag })
+}
+
+export default events

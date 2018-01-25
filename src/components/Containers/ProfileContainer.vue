@@ -15,9 +15,9 @@
 
 <script>
 import xProfile from '../Profile.vue'
+import eventBus from '../../utils/eventBus'
 
 export default {
-  props: [ 'store' ],
   data() {
     return {
       bio: {},
@@ -39,6 +39,21 @@ export default {
       return this.user + this.kount
     }
   },
+  methods: {
+    updateBio( data ) {
+      this.kount += 1
+      this.bio = data
+    },
+    updateRepos( data ) {
+      this.repos = data
+    },
+    updateNotes( data ) {
+      this.notes = data
+    },
+    updateUser( data ) {
+      this.user = data
+    }
+  },
   watch: {
     hasBio( flag ) {
       // NOTE:  add a small dwell so that the hide-show animation works...
@@ -46,32 +61,18 @@ export default {
       setTimeout( () => {
         vm.load = flag
       }, 50 )
-    },
-    'store.bio': {
-      handler( data ) {
-        this.kount += 1
-        this.bio = data
-      },
-      deep: true
-    },
-    'store.repos': {
-      handler( data ) {
-        this.repos = data
-      },
-      deep: true
-    },
-    'store.notes': {
-      handler( data ) {
-        this.notes = data
-      },
-      deep: true
-    },
-    'store.username': {
-      handler( data ) {
-        this.user = data
-      },
-      deep: true
     }
+  },
+  created() {
+    eventBus.$on( 'store.bio', this.updateBio )
+    eventBus.$on( 'store.repos', this.updateRepos )
+    eventBus.$on( 'store.notes', this.updateNotes )
+    eventBus.$on( 'store.username', this.updateUser )
+
+    eventBus.$emit( 'get:bio' )
+    eventBus.$emit( 'get:repos' )
+    eventBus.$emit( 'get:notes' )
+    eventBus.$emit( 'get:username' )
   }
 }
 </script>

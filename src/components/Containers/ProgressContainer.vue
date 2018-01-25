@@ -3,27 +3,39 @@
      style={}>
   <div role="progressbar"
        class="progress-bar"
+       :class="klass"
        :style="style"></div>
 </div>
 </template>
 
 <script>
+import eventBus from '../../utils/eventBus'
+
 export default {
-  props: [ 'store' ],
   data() {
     return {
-      kounter: 0
+      bus: {},
+      kounter: 0,
+      ktype: 'info'
     }
   },
   computed: {
+    klass() {
+      return 'progress-bar-' + this.ktype
+    },
     style() {
       return {
         width: this.kounter + '%'
       }
     }
   },
+  methods: {
+    updateKtype( data ) {
+      this.ktype = data
+    }
+  },
   watch: {
-    "store.kounter": {
+    "bus.kounter": {
       handler( data ) {
         this.kounter = data
       },
@@ -35,6 +47,11 @@ export default {
     setTimeout( () => {
       vm.kounter = 100
     }, 1000 )
+
+    this.bus = eventBus
+
+    eventBus.$on( 'store.ktype', this.updateKtype )
+    eventBus.$emit( 'get:ktype' )
   }
 }
 </script>

@@ -8,9 +8,9 @@
 
 <script>
 import xSearchGithub from '../SearchGithub.vue'
+import eventBus from '../../utils/eventBus'
 
 export default {
-  props: [ 'store' ],
   components: {
     xSearchGithub
   },
@@ -19,14 +19,14 @@ export default {
       user: ''
     }
   },
-  watch: {
-    'store.username': {
-      handler( name ) {
-        console.log( '-- user: ', name, name.length )
-        this.user = name
-      },
-      deep: true
+  methods: {
+    updateUser( data ) {
+      this.user = data
     }
+  },
+  created() {
+    eventBus.$on( 'store.username', this.updateUser )
+    eventBus.$emit( 'get:username' )
   }
 }
 </script>
