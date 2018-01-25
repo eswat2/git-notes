@@ -35,7 +35,7 @@ The following files are part of the deployment:
 
 ```
 dist/       - pre-built vue app, ready to deploy
-app.js      - the node server which will host the react app
+app.js      - the node server which will host the vue app
 demon       - a script to run the node server locally
 Procfile    - required for the heroku deployment
 ```
