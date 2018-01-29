@@ -24,7 +24,7 @@ const _updateStore = (key, value) => {
   eventBus.$emit(name, value)
 }
 
-const updateUser = (username) => {
+const _updateUser = (username) => {
   const user = username.toLowerCase()
   _updateStore( 'username', user )
 }
@@ -163,21 +163,22 @@ const _fetchGithub = (username) => {
   }
 }
 
+const searchFor = (user) => {
+  _updateUser( user )
+  _fetchGithub( user )
+  _fetchNotes( user )
+}
+
 const _popHandler = (pop) => {
   if (pop) {
-    updateUser(pop.username)
+    searchFor(pop.username)
   }
 }
 
 const setPopState = (data) => {
+  console.log('-- setPopState: ', data)
   _updateStore('popState', data )
   _popHandler(data)
-}
-
-const searchFor = (user) => {
-  _updateStore( 'username', user )
-  _fetchGithub( user )
-  _fetchNotes( user )
 }
 
 const actions = {
