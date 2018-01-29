@@ -6,7 +6,7 @@ const handlePopState = (event) => {
   const username = (event.state && event.state.username ? event.state.username : null)
   console.log(`-- popstate:  ${username}`)
 
-  eventBus.$emit('set-pop-state', { username })  // actions.setPopState({ username })
+  eventBus.$emit('set-pop-state', { username })
 }
 
 window.addEventListener( 'popstate', handlePopState )
