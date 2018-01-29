@@ -171,7 +171,7 @@ const searchFor = (user) => {
 
 const _popHandler = (pop) => {
   if (pop) {
-    searchFor(pop.username)
+    searchFor( pop.username )
   }
 }
 
