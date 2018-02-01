@@ -11,6 +11,6 @@ export default {
 
 <style scoped>
 .my-danger {
-  text-align: left
+  text-align: left;
 }
 </style>

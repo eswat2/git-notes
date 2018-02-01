@@ -11,6 +11,6 @@ export default {
 
 <style scoped>
 .my-success {
-  text-align: left
+  text-align: left;
 }
 </style>

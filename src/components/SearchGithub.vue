@@ -71,6 +71,6 @@ export default {
 }
 
 .my-repo:hover {
-  color: red
+  color: red;
 }
 </style>

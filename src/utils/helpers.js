@@ -21,15 +21,15 @@ function getGithubInfo(username) {
     getRepos(username),
     getUserInfo(username)
   ]).then((arr) => ({
-      repos: arr[0].data,
-      bio: arr[1].data,
-      error: false
-    })).catch((err) => ({
-      repos: [],
-      bio: {},
-      error: true,
-      fault: err
-    }))
+    repos: arr[0].data,
+    bio: arr[1].data,
+    error: false
+  })).catch((err) => ({
+    repos: [],
+    bio: {},
+    error: true,
+    fault: err
+  }))
 }
 
 function getGithubNotes(username) {
@@ -37,12 +37,12 @@ function getGithubNotes(username) {
     getKeys(),
     getUserNotes(username)
   ]).then((arr) => ({
-      keys: arr[0].data,
-      notes: arr[1].data
-    })).catch((err) => ({
-      keys: [],
-      notes: []
-    }))
+    keys: arr[0].data,
+    notes: arr[1].data
+  })).catch((err) => ({
+    keys: [],
+    notes: []
+  }))
 }
 
 const helpers = {

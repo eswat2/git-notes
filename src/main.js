@@ -9,7 +9,7 @@ const handlePopState = (event) => {
   eventBus.$emit('set-pop-state', { username })
 }
 
-window.addEventListener( 'popstate', handlePopState )
+window.addEventListener('popstate', handlePopState)
 
 new Vue({
   el: '#app',
