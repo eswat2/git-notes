@@ -32,16 +32,16 @@
 
 <script>
 export default {
-  props: [ 'bio' ],
+  props: ["bio"],
   methods: {
-    chk4num( key ) {
-      return ( this.bio[ key ] !== null && this.bio[ key ] > 0 )
+    chk4num(key) {
+      return this.bio[key] !== null && this.bio[key] > 0;
     },
-    chk4( key ) {
-      return this.bio[ key ] && ( this.bio[ key ] != null )
+    chk4(key) {
+      return this.bio[key] && this.bio[key] != null;
     }
   }
-}
+};
 </script>
 
 <style scoped>

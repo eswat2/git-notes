@@ -14,18 +14,18 @@
 </template>
 
 <script>
-import xUserProfile from './Github/UserProfile.vue'
-import xRepos from './Github/Repos.vue'
-import xNotes from './Notes/Notes.vue'
+import xUserProfile from "./Github/UserProfile.vue";
+import xRepos from "./Github/Repos.vue";
+import xNotes from "./Notes/Notes.vue";
 
 export default {
-  props: [ 'bio', 'repos', 'notes', 'user' ],
+  props: ["bio", "repos", "notes", "user"],
   components: {
     xUserProfile,
     xRepos,
     xNotes
   }
-}
+};
 </script>
 
 <style scoped>

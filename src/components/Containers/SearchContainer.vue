@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import xSearchGithub from '../SearchGithub.vue'
-import eventBus from '../../utils/eventBus'
+import xSearchGithub from "../SearchGithub.vue";
+import eventBus from "../../utils/eventBus";
 
 export default {
   components: {
@@ -16,19 +16,19 @@ export default {
   },
   data() {
     return {
-      user: ''
-    }
+      user: ""
+    };
   },
   methods: {
-    updateUser( data ) {
-      this.user = data
+    updateUser(data) {
+      this.user = data;
     }
   },
   created() {
-    eventBus.$on( 'store.username', this.updateUser )
-    eventBus.$emit( 'get:username' )
+    eventBus.$on("store.username", this.updateUser);
+    eventBus.$emit("get:username");
   }
-}
+};
 </script>
 
 <style scoped>

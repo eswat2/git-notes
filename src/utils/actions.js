@@ -125,7 +125,9 @@ const _saveUser = (username) => {
 
 const _pushState = (username) => {
   if (store.popState === null) {
-    history.pushState({ username }, username, `/profile/${username}`)
+    history.pushState({
+      username
+    }, username, `/profile/${username}`)
   } else {
     setPopState(null)
   }
@@ -157,7 +159,9 @@ const _fetchGithub = (username) => {
   _updateStore('bio', {})
   _updateStore('repos', [])
   if (username) {
-    helpers.getGithubInfo(username).then((data) => { newUserInfo(username, data) })
+    helpers.getGithubInfo(username).then((data) => {
+      newUserInfo(username, data)
+    })
   } else {
     setPopState(null)
   }
@@ -201,15 +205,21 @@ keys.forEach((key) => {
 const tags = Object.keys(store)
 // NOTE:  we setup get listeners for all the tags in the store...
 tags.forEach((tag) => {
-  eventBus.$on('get:' + tag, function() {
+  eventBus.$on('get:' + tag, function () {
     eventBus.$emit('store.' + tag, store[tag])
   })
 })
 
 const events = {
-  api: keys.map((key) => { return key }),
-  data: tags.map((tag) => { return 'store.' + tag }),
-  get: tags.map((tag) => { return 'get:' + tag })
+  api: keys.map((key) => {
+    return key
+  }),
+  data: tags.map((tag) => {
+    return 'store.' + tag
+  }),
+  get: tags.map((tag) => {
+    return 'get:' + tag
+  })
 }
 
 export default events

@@ -9,51 +9,51 @@
 </template>
 
 <script>
-import eventBus from '../../utils/eventBus'
+import eventBus from "../../utils/eventBus";
 
 export default {
   data() {
     return {
       bus: {},
       kounter: 0,
-      ktype: 'info'
-    }
+      ktype: "info"
+    };
   },
   computed: {
     klass() {
-      return 'progress-bar-' + this.ktype
+      return "progress-bar-" + this.ktype;
     },
     style() {
       return {
-        width: this.kounter + '%'
-      }
+        width: this.kounter + "%"
+      };
     }
   },
   methods: {
-    updateKtype( data ) {
-      this.ktype = data
+    updateKtype(data) {
+      this.ktype = data;
     }
   },
   watch: {
     "bus.kounter": {
-      handler( data ) {
-        this.kounter = data
+      handler(data) {
+        this.kounter = data;
       },
       deep: true
     }
   },
   created() {
-    const vm = this
-    setTimeout( () => {
-      vm.kounter = 100
-    }, 1000 )
+    const vm = this;
+    setTimeout(() => {
+      vm.kounter = 100;
+    }, 1000);
 
-    this.bus = eventBus
+    this.bus = eventBus;
 
-    eventBus.$on( 'store.ktype', this.updateKtype )
-    eventBus.$emit( 'get:ktype' )
+    eventBus.$on("store.ktype", this.updateKtype);
+    eventBus.$emit("get:ktype");
   }
-}
+};
 </script>
 
 <style scoped>

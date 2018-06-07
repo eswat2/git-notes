@@ -28,32 +28,32 @@
 </template>
 
 <script>
-import eventBus from '../utils/eventBus'
+import eventBus from "../utils/eventBus";
 
 export default {
-  props: [ 'username' ],
+  props: ["username"],
   data() {
     return {
-      user: ''
-    }
+      user: ""
+    };
   },
   methods: {
     doSubmit() {
-      if ( this.user !== '' ) {
+      if (this.user !== "") {
         // console.log( '-- doSubmit: ', this.user )
-        eventBus.$emit( 'search-for', this.user )
+        eventBus.$emit("search-for", this.user);
       }
     }
   },
   watch: {
-    username( name ) {
+    username(name) {
       // console.log( '-- watch: ', name, name.length )
       // NOTE:  we do this to force the update in the input field...
-      this.$refs.input.value = name
-      this.user = name
+      this.$refs.input.value = name;
+      this.user = name;
     }
   }
-}
+};
 </script>
 
 <style scoped>

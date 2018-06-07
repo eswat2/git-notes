@@ -5,22 +5,22 @@
     <span class="label label-primary my-key"
           :key="tag"
           @click.prevent="keyClick(tag)"
-          v-for="(tag, indx) in keys">{{tag}}</span>
+          v-for="tag in keys">{{tag}}</span>
   </transition-group>
 </div>
 </template>
 
 <script>
-import eventBus from '../utils/eventBus'
+import eventBus from "../utils/eventBus";
 
 export default {
-  props: [ 'keys' ],
+  props: ["keys"],
   methods: {
-    keyClick( tag ) {
-      eventBus.$emit( 'search-for', tag )
+    keyClick(tag) {
+      eventBus.$emit("search-for", tag);
     }
   }
-}
+};
 </script>
 
 <style scoped>

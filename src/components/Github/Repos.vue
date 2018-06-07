@@ -21,13 +21,13 @@
 
 <script>
 export default {
-  props: [ 'repos' ],
+  props: ["repos"],
   methods: {
-    hasValue( val ) {
-      return ( val !== null ) && ( val !== '' )
+    hasValue(val) {
+      return val !== null && val !== "";
     }
   }
-}
+};
 </script>
 
 <style scoped>

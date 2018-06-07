@@ -1,22 +1,33 @@
 import eventBus from './eventBus'
-import { ping } from './actions'
+import {
+  ping
+} from './actions'
 
 const WSS_URI = 'wss://fire-notes.herokuapp.com'
 let wss = null
 
 const getData = (id) => {
   console.log('-- wss: GET ', id)
-  wss.send(JSON.stringify({ type: 'GET', id }))
+  wss.send(JSON.stringify({
+    type: 'GET',
+    id
+  }))
 }
 
 const getKeys = () => {
   console.log('-- wss: KEYS')
-  wss.send(JSON.stringify({ type: 'KEYS' }))
+  wss.send(JSON.stringify({
+    type: 'KEYS'
+  }))
 }
 
 const updateData = (id, value) => {
   console.log('-- wss: POST')
-  wss.send(JSON.stringify({ type: 'POST', id, value }))
+  wss.send(JSON.stringify({
+    type: 'POST',
+    id,
+    value
+  }))
 }
 
 const onOpen = () => {
@@ -53,10 +64,18 @@ const onError = () => {
 const initWebSocket = () => {
   wss = new WebSocket(WSS_URI)
 
-  wss.onopen = (evt) => { onOpen(evt) }
-  wss.onclose = (evt) => { onClose(evt) }
-  wss.onmessage = (evt) => { onMessage(evt) }
-  wss.onerror = (evt) => { onError(evt) }
+  wss.onopen = (evt) => {
+    onOpen(evt)
+  }
+  wss.onclose = (evt) => {
+    onClose(evt)
+  }
+  wss.onmessage = (evt) => {
+    onMessage(evt)
+  }
+  wss.onerror = (evt) => {
+    onError(evt)
+  }
 }
 
 initWebSocket()
@@ -74,7 +93,9 @@ keys.forEach((key) => {
 })
 
 const events = {
-  api: keys.map((key) => { return 'fire-notes:' + key })
+  api: keys.map((key) => {
+    return 'fire-notes:' + key
+  })
 }
 
 export default events

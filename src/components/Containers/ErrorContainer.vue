@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import xDanger from '../Alerts/Danger.vue'
-import eventBus from '../../utils/eventBus'
+import xDanger from "../Alerts/Danger.vue";
+import eventBus from "../../utils/eventBus";
 
 export default {
   components: {
@@ -20,20 +20,19 @@ export default {
   data() {
     return {
       error: false
-    }
+    };
   },
   methods: {
-    updateError( data ) {
-      this.error = data
+    updateError(data) {
+      this.error = data;
     }
   },
   created() {
-    eventBus.$on( 'store.error', this.updateError )
-    eventBus.$emit( 'get:error' )
+    eventBus.$on("store.error", this.updateError);
+    eventBus.$emit("get:error");
   }
-}
+};
 </script>
 
 <style scoped>
-
 </style>

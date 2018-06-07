@@ -5,8 +5,8 @@
 
 <script>
 export default {
-  props: [ 'salute', 'message' ]
-}
+  props: ["salute", "message"]
+};
 </script>
 
 <style scoped>
