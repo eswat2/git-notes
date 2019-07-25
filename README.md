@@ -1,5 +1,5 @@
 # git-notes
-[![Dependency Status](https://dependencyci.com/github/eswat2/git-notes/badge)](https://dependencyci.com/github/eswat2/git-notes)
+
 [![Heroku](https://heroku-badge.herokuapp.com/?app=git-notes&style=flat&svg=1)](https://git-notes.herokuapp.com)
 
 I wanted to build a **Vue** version of my [**egghead-notes**](https://github.com/eswat2/egghead-notes) app and this is the result.
