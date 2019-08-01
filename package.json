@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "parcel index.html",
     "build": "parcel build index.html",
+    "deploy": "git push heroku master",
     "heroku-postbuild": "echo Skip build on Heroku"
   },
   "dependencies": {
