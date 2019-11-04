@@ -26,7 +26,7 @@
     "not ie <= 8"
   ],
   "devDependencies": {
-    "@vue/component-compiler-utils": "3.0.0",
+    "@vue/component-compiler-utils": "3.0.1",
     "parcel-bundler": "1.12.4",
     "vue-template-compiler": "2.6.10"
   },
