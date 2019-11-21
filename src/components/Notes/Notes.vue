@@ -1,17 +1,17 @@
 <template>
-<div>
-  <h3>Notes for {{ user }} </h3>
-  <x-add-note :user="user"></x-add-note>
-  <x-notes-list :notes="notes"></x-notes-list>
-</div>
+  <div>
+    <h3>Notes for {{ user }}</h3>
+    <x-add-note :user="user"></x-add-note>
+    <x-notes-list :notes="notes"></x-notes-list>
+  </div>
 </template>
 
 <script>
-import xAddNote from './AddNote.vue'
-import xNotesList from './NotesList.vue'
+import xAddNote from "./AddNote.vue"
+import xNotesList from "./NotesList.vue"
 
 export default {
-  props: [ 'notes', 'user' ],
+  props: ["notes", "user"],
   components: {
     xAddNote,
     xNotesList
@@ -20,5 +20,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

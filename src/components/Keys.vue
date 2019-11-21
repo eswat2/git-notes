@@ -1,26 +1,27 @@
 <template>
-<div>
-  <transition-group enter-active-class="animated fadeIn"
-                    leave-active-class="animated fadeOut">
-    <span class="label label-primary my-key"
-          :key="tag"
-          @click.prevent="keyClick(tag)"
-          v-for="tag in keys">{{tag}}</span>
-  </transition-group>
-</div>
+  <div>
+    <transition-group enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+      <span
+        class="label label-primary my-key"
+        :key="tag"
+        @click.prevent="keyClick(tag)"
+        v-for="tag in keys"
+      >{{tag}}</span>
+    </transition-group>
+  </div>
 </template>
 
 <script>
-import eventBus from "../utils/eventBus";
+import eventBus from "../utils/eventBus"
 
 export default {
   props: ["keys"],
   methods: {
     keyClick(tag) {
-      eventBus.$emit("search-for", tag);
+      eventBus.$emit("search-for", tag)
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -1,14 +1,14 @@
 <template>
-<nav class="navbar navbar-default my-nav">
-  <div class="col-sm-7 col-sm-offset-2 my-wrap">
-    <x-search-github :username="user"></x-search-github>
-  </div>
-</nav>
+  <nav class="navbar navbar-default my-nav">
+    <div class="col-sm-7 col-sm-offset-2 my-wrap">
+      <x-search-github :username="user"></x-search-github>
+    </div>
+  </nav>
 </template>
 
 <script>
-import xSearchGithub from "../SearchGithub.vue";
-import eventBus from "../../utils/eventBus";
+import xSearchGithub from "../SearchGithub.vue"
+import eventBus from "../../utils/eventBus"
 
 export default {
   components: {
@@ -17,18 +17,18 @@ export default {
   data() {
     return {
       user: ""
-    };
+    }
   },
   methods: {
     updateUser(data) {
-      this.user = data;
+      this.user = data
     }
   },
   created() {
-    eventBus.$on("store.username", this.updateUser);
-    eventBus.$emit("get:username");
+    eventBus.$on("store.username", this.updateUser)
+    eventBus.$emit("get:username")
   }
-};
+}
 </script>
 
 <style scoped>

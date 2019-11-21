@@ -1,5 +1,5 @@
-import eventBus from './eventBus'
-import helpers from './helpers'
+import eventBus from "./eventBus"
+import helpers from "./helpers"
 
 const store = {
   bio: {},
@@ -8,55 +8,57 @@ const store = {
   keys: [],
   tags: [],
   error: false,
-  ktype: 'warning',
-  username: '',
+  ktype: "warning",
+  username: "",
   popState: null
 }
 
-const USER_KEY = 'AppStore.username'
+const USER_KEY = "AppStore.username"
 const truncPath = (str, pattern) => {
-  return (str.indexOf(pattern) !== -1) ? str.slice(str.indexOf(pattern) + pattern.length) : null
+  return str.indexOf(pattern) !== -1
+    ? str.slice(str.indexOf(pattern) + pattern.length)
+    : null
 }
 
 const _updateStore = (key, value) => {
   store[key] = value
-  const name = 'store.' + key
+  const name = "store." + key
   eventBus.$emit(name, value)
 }
 
-const _updateUser = (username) => {
+const _updateUser = username => {
   const user = username.toLowerCase()
-  _updateStore('username', user)
+  _updateStore("username", user)
 }
 
-const addNote = (data) => {
+const addNote = data => {
   // update firebase with the new notes
-  eventBus.$emit('fire-notes:update', data.user, data.note)
+  eventBus.$emit("fire-notes:update", data.user, data.note)
 }
 
-const addTag = (data) => {
+const addTag = data => {
   if (!store.tags.includes(data)) {
     const list = [...store.tags, data].sort()
-    _updateStore('tags', list)
+    _updateStore("tags", list)
   }
 }
 
 const getWho = (user, parm) => {
   if (!user) return null
-  return (parm && parm !== user ? parm : user)
+  return parm && parm !== user ? parm : user
 }
 
 const initStore = () => {
   const user = localStorage.getItem(USER_KEY)
-  const parm = truncPath(location.pathname, '/profile/')
+  const parm = truncPath(location.pathname, "/profile/")
   const who = getWho(user, parm)
   console.log(`-- initStore:  ${who}`)
   // console.log(location);
   // console.log(parm);
-  _updateStore('username', (who ? who.toLowerCase() : null))
+  _updateStore("username", who ? who.toLowerCase() : null)
 
   eventBus.kounter = 0
-  _updateStore('ktype', 'info')
+  _updateStore("ktype", "info")
 
   if (store.username !== null) {
     _fetchGithub(store.username)
@@ -75,7 +77,7 @@ export const ping = () => {
   const kount = eventBus.kounter
   if (ticker === 5) {
     ticker = 0
-    eventBus.kounter = (kount === 100) ? 0 : kount + 1
+    eventBus.kounter = kount === 100 ? 0 : kount + 1
   } else {
     ticker++
   }
@@ -84,16 +86,16 @@ export const ping = () => {
 
 const offline = () => {
   eventBus.kounter = 100
-  _updateStore('ktype', 'danger')
+  _updateStore("ktype", "danger")
 }
 
-const newData = (data) => {
-  if (data.type === 'KEYS') {
-    _updateStore('keys', data.keys)
+const newData = data => {
+  if (data.type === "KEYS") {
+    _updateStore("keys", data.keys)
   }
-  if (data.type === 'DATA') {
+  if (data.type === "DATA") {
     if (data.id === store.username) {
-      _updateStore('notes', data.values)
+      _updateStore("notes", data.values)
     }
   }
 }
@@ -116,35 +118,39 @@ const startKlock = () => {
   }, 10000)
 }
 
-const _saveUser = (username) => {
+const _saveUser = username => {
   if (username !== null) {
     console.log(`-- saveUser:  ${username}`)
     localStorage.setItem(USER_KEY, username)
   }
 }
 
-const _pushState = (username) => {
+const _pushState = username => {
   if (store.popState === null) {
-    history.pushState({
-      username
-    }, username, `/profile/${username}`)
+    history.pushState(
+      {
+        username
+      },
+      username,
+      `/profile/${username}`
+    )
   } else {
     setPopState(null)
   }
 }
 
-const _fetchNotes = (username) => {
+const _fetchNotes = username => {
   console.log(`-- fetchNotes:  ${username}`)
-  _updateStore('notes', [])
+  _updateStore("notes", [])
   if (username) {
-    eventBus.$emit('fire-notes:get', username)
+    eventBus.$emit("fire-notes:get", username)
   }
 }
 
 const newUserInfo = (username, data) => {
-  _updateStore('bio', data.bio)
-  _updateStore('repos', data.repos)
-  _updateStore('error', data.error)
+  _updateStore("bio", data.bio)
+  _updateStore("repos", data.repos)
+  _updateStore("error", data.error)
 
   if (!store.error) {
     _saveUser(username)
@@ -154,12 +160,12 @@ const newUserInfo = (username, data) => {
   }
 }
 
-const _fetchGithub = (username) => {
+const _fetchGithub = username => {
   console.log(`-- fetchGithub:  ${username}`)
-  _updateStore('bio', {})
-  _updateStore('repos', [])
+  _updateStore("bio", {})
+  _updateStore("repos", [])
   if (username) {
-    helpers.getGithubInfo(username).then((data) => {
+    helpers.getGithubInfo(username).then(data => {
       newUserInfo(username, data)
     })
   } else {
@@ -167,58 +173,58 @@ const _fetchGithub = (username) => {
   }
 }
 
-const searchFor = (user) => {
+const searchFor = user => {
   _updateUser(user)
   _fetchGithub(user)
   _fetchNotes(user)
 }
 
-const _popHandler = (pop) => {
+const _popHandler = pop => {
   if (pop) {
     searchFor(pop.username)
   }
 }
 
-const setPopState = (data) => {
-  console.log('-- setPopState: ', data)
-  _updateStore('popState', data)
+const setPopState = data => {
+  console.log("-- setPopState: ", data)
+  _updateStore("popState", data)
   _popHandler(data)
 }
 
 const actions = {
-  'init-store': initStore,
-  'start-klock': startKlock,
-  'offline': offline,
-  'search-for': searchFor,
-  'add-new-note': addNote,
-  'add-new-tag': addTag,
-  'new-data': newData,
-  'set-pop-state': setPopState
+  "init-store": initStore,
+  "start-klock": startKlock,
+  offline: offline,
+  "search-for": searchFor,
+  "add-new-note": addNote,
+  "add-new-tag": addTag,
+  "new-data": newData,
+  "set-pop-state": setPopState
 }
 
 const keys = Object.keys(actions)
 // NOTE:  we define listeners for all of the exposed apis...
-keys.forEach((key) => {
+keys.forEach(key => {
   eventBus.$on(key, actions[key])
 })
 
 const tags = Object.keys(store)
 // NOTE:  we setup get listeners for all the tags in the store...
-tags.forEach((tag) => {
-  eventBus.$on('get:' + tag, function () {
-    eventBus.$emit('store.' + tag, store[tag])
+tags.forEach(tag => {
+  eventBus.$on("get:" + tag, function() {
+    eventBus.$emit("store." + tag, store[tag])
   })
 })
 
 const events = {
-  api: keys.map((key) => {
+  api: keys.map(key => {
     return key
   }),
-  data: tags.map((tag) => {
-    return 'store.' + tag
+  data: tags.map(tag => {
+    return "store." + tag
   }),
-  get: tags.map((tag) => {
-    return 'get:' + tag
+  get: tags.map(tag => {
+    return "get:" + tag
   })
 }
 

@@ -1,15 +1,11 @@
 <template>
-<div class="progress my-bar"
-     style={}>
-  <div role="progressbar"
-       class="progress-bar"
-       :class="klass"
-       :style="style"></div>
-</div>
+  <div class="progress my-bar" style="{}">
+    <div role="progressbar" class="progress-bar" :class="klass" :style="style"></div>
+  </div>
 </template>
 
 <script>
-import eventBus from "../../utils/eventBus";
+import eventBus from "../../utils/eventBus"
 
 export default {
   data() {
@@ -17,43 +13,43 @@ export default {
       bus: {},
       kounter: 0,
       ktype: "info"
-    };
+    }
   },
   computed: {
     klass() {
-      return "progress-bar-" + this.ktype;
+      return "progress-bar-" + this.ktype
     },
     style() {
       return {
         width: this.kounter + "%"
-      };
+      }
     }
   },
   methods: {
     updateKtype(data) {
-      this.ktype = data;
+      this.ktype = data
     }
   },
   watch: {
     "bus.kounter": {
       handler(data) {
-        this.kounter = data;
+        this.kounter = data
       },
       deep: true
     }
   },
   created() {
-    const vm = this;
+    const vm = this
     setTimeout(() => {
-      vm.kounter = 100;
-    }, 1000);
+      vm.kounter = 100
+    }, 1000)
 
-    this.bus = eventBus;
+    this.bus = eventBus
 
-    eventBus.$on("store.ktype", this.updateKtype);
-    eventBus.$emit("get:ktype");
+    eventBus.$on("store.ktype", this.updateKtype)
+    eventBus.$emit("get:ktype")
   }
-};
+}
 </script>
 
 <style scoped>
