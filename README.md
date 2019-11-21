@@ -29,18 +29,10 @@ I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/We
 
 ### Deployed:
 
-This app is running on [**git-notes.herokuapp.com**](https://git-notes.herokuapp.com)
+This app is running on [**eswat2.github.io/git-notes**](https://eswat2.github.io/git-notes)
 
-The following files are part of the deployment:
-
-```
-dist/       - pre-built vue app, ready to deploy
-app.js      - the node server which will host the vue app
-demon       - a script to run the node server locally
-Procfile    - required for the heroku deployment
-```
 Running the app locally is as simple as executing the following:
 
 ```
-npm run dev
+yarn dev
 ```
