@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "test": "echo skipping...",
     "cc": "prettier --check './src/**/*.js'",
     "spell": "cspell './**/*.js'",
@@ -23,8 +24,7 @@
     "express-sslify": "1.2.0",
     "kuker-emitters": "6.7.4",
     "lodash": "4.17.15",
-    "vue": "2.6.10",
-    "vue-hot-reload-api": "^2.3.4"
+    "vue": "2.6.10"
   },
   "browserslist": [
     "> 1%",
@@ -32,9 +32,13 @@
     "not ie <= 8"
   ],
   "devDependencies": {
-    "@vue/component-compiler-utils": "3.0.2",
-    "gh-pages": "^2.1.1",
-    "parcel-bundler": "1.12.4",
+    "@vue/cli-plugin-babel": "4.0.5",
+    "@vue/cli-plugin-eslint": "4.0.5",
+    "@vue/cli-service": "4.0.5",
+    "babel-eslint": "10.0.3",
+    "eslint": "6.6.0",
+    "eslint-plugin-vue": "^6.0.1",
+    "gh-pages": "2.1.1",
     "vue-template-compiler": "2.6.10"
   },
   "heroku-run-build-script": true

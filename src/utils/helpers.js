@@ -41,7 +41,8 @@ function getGithubNotes(username) {
     }))
     .catch(err => ({
       keys: [],
-      notes: []
+      notes: [],
+      fault: err
     }))
 }
 
