@@ -19,9 +19,6 @@
   },
   "dependencies": {
     "axios": "0.19.0",
-    "express": "4.17.1",
-    "express-history-api-fallback": "2.2.1",
-    "express-sslify": "1.2.0",
     "kuker-emitters": "6.7.4",
     "lodash": "4.17.15",
     "vue": "2.6.10"

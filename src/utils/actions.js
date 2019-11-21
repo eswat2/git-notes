@@ -125,20 +125,6 @@ const _saveUser = username => {
   }
 }
 
-const _pushState = username => {
-  if (store.popState === null) {
-    history.pushState(
-      {
-        username
-      },
-      username,
-      `/git-notes/profile/${username}`
-    )
-  } else {
-    setPopState(null)
-  }
-}
-
 const _fetchNotes = username => {
   console.log(`-- fetchNotes:  ${username}`)
   _updateStore("notes", [])
@@ -154,7 +140,6 @@ const newUserInfo = (username, data) => {
 
   if (!store.error) {
     _saveUser(username)
-    _pushState(username)
 
     addTag(username)
   }
