@@ -1,6 +1,7 @@
 .DS_Store
 .env
 .cache
+dist
 
 # Logs
 logs

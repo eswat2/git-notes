@@ -23,7 +23,8 @@
     "express-sslify": "1.2.0",
     "kuker-emitters": "6.7.4",
     "lodash": "4.17.15",
-    "vue": "2.6.10"
+    "vue": "2.6.10",
+    "vue-hot-reload-api": "^2.3.4"
   },
   "browserslist": [
     "> 1%",
