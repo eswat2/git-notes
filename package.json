@@ -20,7 +20,7 @@
   "dependencies": {
     "axios": "0.19.2",
     "kuker-emitters": "6.7.4",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "vue": "2.6.11"
   },
   "browserslist": [
