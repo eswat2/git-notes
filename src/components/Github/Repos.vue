@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>User Repos</h3>
+    <h3>User Repos <span class="info">({{count}} of {{pCount}})</span></h3>
     <ul class="list-group">
       <li class="list-group-item" :key="indx" v-for="(repo, indx) in repos">
         <h4 v-if="repo.html_url">
@@ -18,16 +18,30 @@
 
 <script>
 export default {
-  props: ["repos"],
+  props: ["bio", "repos"],
   methods: {
     hasValue(val) {
       return val !== null && val !== ""
+    }
+  },
+  computed: {
+    count() {
+      return this.repos ? this.repos.length : 0
+    },
+    pCount() {
+      return this.bio ? this.bio.public_repos : 0
     }
   }
 }
 </script>
 
 <style scoped>
+.info {
+  color: grey;
+  font-size: 10px;
+  vertical-align: top;
+}
+
 .my-grey {
   color: grey;
 }

@@ -4,7 +4,7 @@
       <x-user-profile :bio="bio"></x-user-profile>
     </div>
     <div class="col-md-4">
-      <x-repos :repos="repos"></x-repos>
+      <x-repos :bio="bio" :repos="repos"></x-repos>
     </div>
     <div class="col-md-4">
       <x-notes :notes="notes" :user="user"></x-notes>
