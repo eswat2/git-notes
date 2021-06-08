@@ -21,7 +21,7 @@
     "axios": "0.21.1",
     "kuker-emitters": "6.7.4",
     "lodash": "4.17.21",
-    "vue": "2.6.13"
+    "vue": "2.6.14"
   },
   "browserslist": [
     "> 1%",
@@ -36,7 +36,7 @@
     "eslint": "7.28.0",
     "eslint-plugin-vue": "7.10.0",
     "gh-pages": "3.2.0",
-    "vue-template-compiler": "2.6.13"
+    "vue-template-compiler": "2.6.14"
   },
   "heroku-run-build-script": true
 }
