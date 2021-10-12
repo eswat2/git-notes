@@ -18,7 +18,7 @@
     "open": "open https://eswat2.github.io/git-notes"
   },
   "dependencies": {
-    "axios": "0.22.0",
+    "axios": "0.23.0",
     "kuker-emitters": "6.7.4",
     "lodash": "4.17.21",
     "vue": "2.6.14"
