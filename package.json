@@ -29,11 +29,11 @@
     "not ie <= 8"
   ],
   "devDependencies": {
-    "@vue/cli-plugin-babel": "4.5.13",
-    "@vue/cli-plugin-eslint": "4.5.13",
-    "@vue/cli-service": "4.5.13",
+    "@vue/cli-plugin-babel": "4.5.14",
+    "@vue/cli-plugin-eslint": "4.5.14",
+    "@vue/cli-service": "4.5.14",
     "babel-eslint": "10.1.0",
-    "eslint": "8.0.0",
+    "eslint": "8.0.1",
     "eslint-plugin-vue": "7.19.1",
     "gh-pages": "3.2.3",
     "vue-template-compiler": "2.6.14"
