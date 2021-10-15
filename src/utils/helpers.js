@@ -19,30 +19,30 @@ function getKeys() {
 function getGithubInfo(username) {
   return axios
     .all([getRepos(username), getUserInfo(username)])
-    .then(arr => ({
+    .then((arr) => ({
       repos: arr[0].data,
       bio: arr[1].data,
-      error: false
+      error: false,
     }))
-    .catch(err => ({
+    .catch((err) => ({
       repos: [],
       bio: {},
       error: true,
-      fault: err
+      fault: err,
     }))
 }
 
 function getGithubNotes(username) {
   return axios
     .all([getKeys(), getUserNotes(username)])
-    .then(arr => ({
+    .then((arr) => ({
       keys: arr[0].data,
-      notes: arr[1].data
+      notes: arr[1].data,
     }))
-    .catch(err => ({
+    .catch((err) => ({
       keys: [],
       notes: [],
-      fault: err
+      fault: err,
     }))
 }
 
@@ -51,7 +51,7 @@ const helpers = {
   getGithubNotes,
   getUserNotes,
   getUserInfo,
-  getRepos
+  getRepos,
 }
 
 export default helpers

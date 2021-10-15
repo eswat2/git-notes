@@ -12,6 +12,7 @@
     "serve": "vite preview",
     "test": "echo skipping...",
     "cc": "prettier --check './src/**/*.js'",
+    "format": "prettier --write './src/**/*.js'",
     "spell": "cspell './**/*.js'",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d dist --git git",

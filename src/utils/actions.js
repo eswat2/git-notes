@@ -10,7 +10,7 @@ const store = {
   error: false,
   ktype: "warning",
   username: "",
-  popState: null
+  popState: null,
 }
 
 const USER_KEY = "AppStore.username"
@@ -26,17 +26,17 @@ const _updateStore = (key, value) => {
   eventBus.$emit(name, value)
 }
 
-const _updateUser = username => {
+const _updateUser = (username) => {
   const user = username.toLowerCase()
   _updateStore("username", user)
 }
 
-const addNote = data => {
+const addNote = (data) => {
   // update firebase with the new notes
   eventBus.$emit("fire-notes:update", data.user, data.note)
 }
 
-const addTag = data => {
+const addTag = (data) => {
   if (!store.tags.includes(data)) {
     const list = [...store.tags, data].sort()
     _updateStore("tags", list)
@@ -89,7 +89,7 @@ const offline = () => {
   _updateStore("ktype", "danger")
 }
 
-const newData = data => {
+const newData = (data) => {
   if (data.type === "KEYS") {
     _updateStore("keys", data.keys)
   }
@@ -118,14 +118,14 @@ const startKlock = () => {
   }, 10000)
 }
 
-const _saveUser = username => {
+const _saveUser = (username) => {
   if (username !== null) {
     console.log(`-- saveUser:  ${username}`)
     localStorage.setItem(USER_KEY, username)
   }
 }
 
-const _fetchNotes = username => {
+const _fetchNotes = (username) => {
   console.log(`-- fetchNotes:  ${username}`)
   _updateStore("notes", [])
   if (username) {
@@ -145,12 +145,12 @@ const newUserInfo = (username, data) => {
   }
 }
 
-const _fetchGithub = username => {
+const _fetchGithub = (username) => {
   console.log(`-- fetchGithub:  ${username}`)
   _updateStore("bio", {})
   _updateStore("repos", [])
   if (username) {
-    helpers.getGithubInfo(username).then(data => {
+    helpers.getGithubInfo(username).then((data) => {
       newUserInfo(username, data)
     })
   } else {
@@ -158,19 +158,19 @@ const _fetchGithub = username => {
   }
 }
 
-const searchFor = user => {
+const searchFor = (user) => {
   _updateUser(user)
   _fetchGithub(user)
   _fetchNotes(user)
 }
 
-const _popHandler = pop => {
+const _popHandler = (pop) => {
   if (pop) {
     searchFor(pop.username)
   }
 }
 
-const setPopState = data => {
+const setPopState = (data) => {
   console.log("-- setPopState: ", data)
   _updateStore("popState", data)
   _popHandler(data)
@@ -184,33 +184,33 @@ const actions = {
   "add-new-note": addNote,
   "add-new-tag": addTag,
   "new-data": newData,
-  "set-pop-state": setPopState
+  "set-pop-state": setPopState,
 }
 
 const keys = Object.keys(actions)
 // NOTE:  we define listeners for all of the exposed apis...
-keys.forEach(key => {
+keys.forEach((key) => {
   eventBus.$on(key, actions[key])
 })
 
 const tags = Object.keys(store)
 // NOTE:  we setup get listeners for all the tags in the store...
-tags.forEach(tag => {
-  eventBus.$on("get:" + tag, function() {
+tags.forEach((tag) => {
+  eventBus.$on("get:" + tag, function () {
     eventBus.$emit("store." + tag, store[tag])
   })
 })
 
 const events = {
-  api: keys.map(key => {
+  api: keys.map((key) => {
     return key
   }),
-  data: tags.map(tag => {
+  data: tags.map((tag) => {
     return "store." + tag
   }),
-  get: tags.map(tag => {
+  get: tags.map((tag) => {
     return "get:" + tag
-  })
+  }),
 }
 
 export default events
