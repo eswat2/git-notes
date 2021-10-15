@@ -108,14 +108,14 @@ const startKlock = () => {
   }, 10000)
 }
 
-const _pushState = username => {
+const _pushState = (username) => {
   if (store.popState === null) {
     history.pushState(
       {
-        username
+        username,
       },
       username,
-      `/profile/${username}`
+      `#${username}`
     )
   } else {
     setPopState(null)
