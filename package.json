@@ -15,8 +15,8 @@
     "format": "prettier --write './src/**/*.js'",
     "spell": "cspell './**/*.js'",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d dist --git git",
-    "open": "open https://eswat2.github.io/git-notes"
+    "deploy": "cd dist; ln -s ../.vercel .; vc",
+    "open": "open https://git-notes-eswat2.vercel.app"
   },
   "dependencies": {
     "axios": "0.23.0",
@@ -31,7 +31,6 @@
   ],
   "devDependencies": {
     "@vitejs/plugin-vue": "1.9.3",
-    "gh-pages": "3.2.3",
     "vite": "2.6.7"
   },
   "heroku-run-build-script": true
