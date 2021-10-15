@@ -1,7 +1,7 @@
 {
   "name": "git-notes",
-  "description": "A Vue.js project",
-  "homepage": "https://eswat2.github.io/git-notes",
+  "description": "A Vue.js project...",
+  "homepage": "https://git-notes-eswat2.vercel.app",
   "version": "1.0.0",
   "author": "Richard Hess <eswat2@gmail.com>",
   "license": "MIT",
@@ -21,17 +21,16 @@
   "dependencies": {
     "axios": "0.23.0",
     "lodash": "4.17.21",
-    "tiny-emitter": "^2.1.0",
+    "tiny-emitter": "2.1.0",
     "vue": "3.2.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "1.9.3",
+    "vite": "2.6.7"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ],
-  "devDependencies": {
-    "@vitejs/plugin-vue": "1.9.3",
-    "vite": "2.6.7"
-  },
-  "heroku-run-build-script": true
+  ]
 }
