@@ -108,6 +108,20 @@ const startKlock = () => {
   }, 10000)
 }
 
+const _pushState = username => {
+  if (store.popState === null) {
+    history.pushState(
+      {
+        username
+      },
+      username,
+      `/git-notes/profile/${username}`
+    )
+  } else {
+    setPopState(null)
+  }
+}
+
 const _saveUser = (username) => {
   if (username !== null) {
     console.log(`-- saveUser:  ${username}`)
@@ -130,6 +144,7 @@ const newUserInfo = (username, data) => {
 
   if (!store.error) {
     _saveUser(username)
+    _pushState(username)
 
     addTag(username)
   }
