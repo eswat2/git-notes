@@ -10,16 +10,17 @@ I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/We
 
 ### Features:
 
-- initialized the project with **vue-cli** (webpack-simple)
+- using the latest version of **Vue3**
+- converted the project to use [**Vite**](https://vitejs.dev) - _NextGen Frontend Tooling_
 - refined UI elements
 - mobile friendly layout
 - an isolated store mutated only by actions
-- a simple eventBus which controls the flow of data thru the app
+- a simple [**eventBus**](https://github.com/scottcorgan/tiny-emitter) which controls the flow of data thru the app
 - uses [**axios**](https://github.com/mzabriskie/axios) for all api calls
 - uses [**WebSockets**](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) to talk to a custom notes server, [**fire-notes**](https://fire-notes.herokuapp.com)
 - a simple html5 pushstate mechanism
 - saves last valid username to local storage
-- initializes app from URL if it matches /profile/:username
+- initializes app from URL if it matches `#:username`
 - otherwise it reloads last username from local storage
 - a simple navigator for visited usernames
 
