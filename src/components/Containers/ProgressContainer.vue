@@ -1,6 +1,6 @@
 <template>
   <div class="progress my-bar" style="{}">
-    <div role="progressbar" class="progress-bar" :class="klass" :style="style"></div>
+    <div role="progressbar" class="progress-bar progress-bar-info" :style="style"></div>
   </div>
 </template>
 
@@ -11,43 +11,31 @@ export default {
   data() {
     return {
       bus: {},
-      kounter: 0,
-      ktype: "info"
+      offline: true,
     }
   },
   computed: {
-    klass() {
-      return "progress-bar-" + this.ktype
-    },
     style() {
       return {
-        width: this.kounter + "%"
+        width: (this.offline ? 0 : 100) + "%"
       }
     }
   },
   methods: {
-    updateKtype(data) {
-      this.ktype = data
-    }
-  },
-  watch: {
-    "bus.kounter": {
-      handler(data) {
-        this.kounter = data
-      },
-      deep: true
-    }
+    updateOffline() {
+      this.offline = true;
+    },
+    updateTicker() {
+      if (this.offline) {
+        this.offline = false;
+      }
+    },
   },
   created() {
-    const vm = this
-    setTimeout(() => {
-      vm.kounter = 100
-    }, 1000)
-
     this.bus = eventBus
 
-    eventBus.$on("store.ktype", this.updateKtype)
-    eventBus.$emit("get:ktype")
+    eventBus.$on("tick:toc", this.updateTicker)
+    eventBus.$on("tick:offline", this.updateOffline)
   }
 }
 </script>

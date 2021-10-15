@@ -8,7 +8,6 @@ const store = {
   keys: [],
   tags: [],
   error: false,
-  ktype: "warning",
   username: "",
   popState: null,
 }
@@ -57,16 +56,12 @@ const initStore = () => {
   // console.log(parm);
   _updateStore("username", who ? who.toLowerCase() : null)
 
-  eventBus.kounter = 0
-  _updateStore("ktype", "info")
-
   if (store.username !== null) {
     _fetchGithub(store.username)
     _fetchNotes(store.username)
   }
 }
 
-let ticker = 0
 let ticks = 0
 let klock = null
 //
@@ -74,19 +69,14 @@ let klock = null
 //
 //
 export const ping = () => {
-  const kount = eventBus.kounter
-  if (ticker === 5) {
-    ticker = 0
-    eventBus.kounter = kount === 100 ? 0 : kount + 1
-  } else {
-    ticker++
+  if (ticks % 5 === 0) {
+    eventBus.$emit("tick:toc")
   }
   ticks++
 }
 
 const offline = () => {
-  eventBus.kounter = 100
-  _updateStore("ktype", "danger")
+  eventBus.$emit("tick:offline")
 }
 
 const newData = (data) => {
@@ -103,7 +93,7 @@ const newData = (data) => {
 let lastKount = 0
 
 const _verifyWSS = () => {
-  // console.log('-- verifyWSS:  ' + ticks + ', ' + last_kount);
+  // console.log("-- verifyWSS:  " + ticks + ", " + lastKount)
   if (ticks > 0 && ticks !== lastKount) {
     lastKount = ticks
   } else {

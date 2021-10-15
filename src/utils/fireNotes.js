@@ -50,12 +50,11 @@ const onClose = () => {
 
 const onMessage = (evt) => {
   if (evt.data === "ping") {
-    console.log(evt.data)
     ping()
   } else {
     console.log("-- wss: " + evt.data)
     const data = JSON.parse(evt.data)
-    console.log(data)
+    // console.log(data)
     eventBus.$emit("new-data", data) // actions.newData(data)
   }
 }
