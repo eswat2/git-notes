@@ -41,6 +41,11 @@ export default {
       this.kount += 1
       this.bio = data
     },
+    updateKeys(data) {
+      if (!data.includes(this.user)) {
+        this.notes = []
+      }
+    },
     updateRepos(data) {
       this.repos = data
     },
@@ -62,6 +67,7 @@ export default {
   },
   created() {
     eventBus.$on("store.bio", this.updateBio)
+    eventBus.$on("store.keys", this.updateKeys)
     eventBus.$on("store.repos", this.updateRepos)
     eventBus.$on("store.notes", this.updateNotes)
     eventBus.$on("store.username", this.updateUser)
