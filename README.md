@@ -8,10 +8,6 @@ I wanted to build a **Vue** version of my [**egghead-notes**](https://github.com
 
 I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) notes server, [**fire-notes.herokuapp.com**](https://fire-notes.herokuapp.com), to handle reading & writing notes.  The repo for that can be found here: [**fire-notes**](https://github.com/eswat2/fire-notes)
 
-### Elements:
-
-[![](images/git-notes_herokuapp-50x.png?raw=true)](https://raw.githubusercontent.com/eswat2/git-notes/master/images/git-notes_herokuapp-50x.png)
-
 ### Features:
 
 - initialized the project with **vue-cli** (webpack-simple)
@@ -29,10 +25,12 @@ I am using a custom [**WebSockets**](https://developer.mozilla.org/en-US/docs/We
 
 ### Deployed:
 
-This app is running on [**eswat2.github.io/git-notes**](https://eswat2.github.io/git-notes)
+This app is running on [**git-notes-eswat2.vercel.app**](https://git-notes-eswat2.vercel.app)
 
 Running the app locally is as simple as executing the following:
 
 ```
-yarn dev
+yarn install
+yarn build
+yarn serve
 ```
