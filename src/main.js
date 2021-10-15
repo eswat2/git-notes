@@ -1,4 +1,4 @@
-import Vue from "vue"
+import { createApp } from "vue"
 import App from "./App.vue"
 import eventBus from "./utils/eventBus"
 // import { VueEmitter } from 'kuker-emitters'
@@ -17,7 +17,4 @@ const handlePopState = event => {
 
 window.addEventListener("popstate", handlePopState)
 
-new Vue({
-  el: "#app",
-  render: h => h(App)
-})
+createApp(App).mount('#app')
