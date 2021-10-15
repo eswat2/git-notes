@@ -115,7 +115,7 @@ const _pushState = username => {
         username
       },
       username,
-      `/git-notes/profile/${username}`
+      `/profile/${username}`
     )
   } else {
     setPopState(null)
