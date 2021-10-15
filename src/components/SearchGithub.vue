@@ -12,7 +12,7 @@
           <input
             type="text"
             class="form-control lower"
-            placeholder="Username..."
+            placeholder="Profile..."
             ref="input"
             v-model.trim="user"
           />
