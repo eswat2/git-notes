@@ -13,7 +13,8 @@ const store = {
 }
 
 const USER_KEY = "AppStore.username"
-const truncPath = (str, pattern) => {
+const stripHash = (str) => {
+  const pattern = "#"
   return str.indexOf(pattern) !== -1
     ? str.slice(str.indexOf(pattern) + pattern.length)
     : null
@@ -49,7 +50,7 @@ const getWho = (user, parm) => {
 
 const initStore = () => {
   const user = localStorage.getItem(USER_KEY)
-  const parm = truncPath(location.pathname, "/profile/")
+  const parm = stripHash(location.hash)
   const who = getWho(user, parm)
   console.log(`-- initStore:  ${who}`)
   // console.log(location);

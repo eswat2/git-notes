@@ -3,8 +3,8 @@ import App from "./App.vue"
 import eventBus from "./utils/eventBus"
 
 const handleHashChange = (event) => {
-  const url = event.newURL;
-  const list = url.split('#')
+  const url = event.newURL
+  const list = url.split("#")
   const username = list && list.length === 2 ? list[1] : undefined
   if (username) {
     eventBus.$emit("set-pop-state", {
