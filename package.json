@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "2.0.1",
-    "vite": "2.7.4"
+    "vite": "2.7.5"
   },
   "browserslist": [
     "> 1%",
