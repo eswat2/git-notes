@@ -19,7 +19,7 @@
     "open": "open https://git-notes-eswat2.vercel.app"
   },
   "dependencies": {
-    "axios": "0.27.1",
+    "axios": "0.27.2",
     "lodash": "4.17.21",
     "tiny-emitter": "2.1.0",
     "vue": "3.2.33"
