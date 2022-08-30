@@ -22,7 +22,7 @@
     "axios": "0.27.2",
     "lodash": "4.17.21",
     "tiny-emitter": "2.1.0",
-    "vue": "3.2.37"
+    "vue": "3.2.38"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "3.0.3",
